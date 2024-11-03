@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página de Ejemplo con Twitch</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f0f0f0;
+            color: #333;
+            transition: background 0.5s, color 0.5s;
+        }
+
+        header {
+            background-color: #6a0dad;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        header nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        header nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        header nav button {
+            background-color: #fff;
+            color: #6a0dad;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px; /* Esquinas redondeadas */
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .banner {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 120px 0 50px 0; /* Ajuste para el encabezado fijo */
+        }
+
+        .live-notice {
+            position: relative;
+        }
+
+        .live-badge {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #6a0dad;
+            padding: 10px 20px;
+            border-radius: 5px; /* Esquinas redondeadas */
+        }
+
+        .live-message {
+            background-color: #00ff00;
+            color: black;
+            padding: 20px;
+            margin-top: 30px;
+            display: inline-block;
+            border-radius: 5px; /* Esquinas redondeadas */
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #ff0000;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            margin-top: 20px;
+            border-radius: 5px; /* Esquinas redondeadas */
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 50px 0;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .info {
+            max-width: 500px;
+        }
+
+        .podcast {
+            background-color: #f0f0f0;
+            padding: 50px 0;
+            text-align: center;
+        }
+
+        .podcast-item {
+            display: inline-block;
+            width: 200px;
+            margin: 20px;
+        }
+
+        .podcast-thumbnail {
+            background-color: #ccc;
+            width: 100%;
+            height: 150px;
+        }
+
+        footer {
+            background-color: #6a0dad;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .dark-mode {
+            background: #000;
+            color: #fff;
+        }
+
+        .dark-mode header {
+            background-color: #6a0dad;
+        }
+
+        .dark-mode header nav a,
+        .dark-mode header nav button {
+            color: #fff;
+        }
+
+        .dark-mode #darkModeToggle {
+            color: #6a0dad;
+            text-shadow: 1px 1px 2px #6a0dad;
+        }
+
+        .dark-mode .banner,
+        .dark-mode .live-message {
+            background-color: #444;
+            color: #fff;
+        }
+
+        .dark-mode .cta-button {
+            background-color: #6a0dad;
+        }
+
+        .dark-mode .content,
+        .dark-mode .podcast {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .dark-mode .podcast-thumbnail {
+            background-color: #555;
+        }
+
+        .dark-mode footer {
+            background-color: #6a0dad;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .live-badge p, .live-message p, .cta-button {
+            margin: 0;
+        }
+
+        /* Estilos para el contenedor de Twitch */
+        #twitch-embed {
+            width: 80%; /* Ajuste del tamaño del embed de Twitch */
+            height: 50%; /* Ajuste del tamaño del embed de Twitch */
+            margin: 5% auto; /* Centrar y dar margen */
+        }
+
+        main {
+            margin-top: 80px; /* Espacio para el encabezado fijo */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://via.placeholder.com/100" alt="Logo" class="logo">
+        </div>
+        <nav>
+            <a href="#link1">HOME</a>
+            <a href="#link2">STREAM</a>
+            <a href="#link3">HORARIO</a>
+            <a href="#link4">SOBRE NOSOTROS</a>
+            <button id="darkModeToggle">Modo Oscuro</button>
+        </nav>
+    </header>
+    <main>
+        <section class="banner">
+            <div class="live-notice">
+                <div class="live-badge">
+                    <p>EN DIRECTO</p>
+                </div>
+                <div class="live-message">
+                    <p>Estamos en directo ven y echa un vistazo</p>
+                    <a href="#" class="cta-button">Click aquí!</a>
+                </div>
+                <div id="twitch-embed"></div> <!-- Contenedor para el Twitch embed -->
+            </div>
+        </section>
+        <section class="content">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/600x400" alt="Imagen de 5 personas" usemap="#image-map">
+                <map name="image-map">
+                    <area shape="rect" coords="34,44,270,350" alt="Persona 1" href="pagina1.html">
+                    <area shape="rect" coords="290,44,526,350" alt="Persona 2" href="pagina2.html">
+                    <area shape="rect" coords="546,44,782,350" alt="Persona 3" href="pagina3.html">
+                    <area shape="rect" coords="802,44,1038,350" alt="Persona 4" href="pagina4.html">
+                    <area shape="rect" coords="1058,44,1294,350" alt="Persona 5" href="pagina5.html">
+                </map>
+            </div>
+            <div class="info">
+                <h2>Rapphone</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent interdum purus ut arcu placerat, ut dignissim libero consequat. Aliquam erat volutpat. Proin laoreet mauris non orci tempor, in tempor sapien dapibus. Donec vehicula lacus non felis scelerisque, et tincidunt ligula faucibus.</p>
+                <a href="mailto:contacto@tudominio.com">contacto@tudominio.com</a>
+            </div>
+        </section>
+        <section class="podcast">
+            <h2 class="section-title">Podcast</h2>
+            <div class="podcast-item">
+                <div class="podcast-thumbnail"></div>
+                <p>XXXXXXXXXX</p>
+            </div>
+            <div class="podcast-item">
+                <div class="podcast-thumbnail"></div>
+                <p>XXXXXXXXXX</p>
+            </div>
+            <div class="podcast-item">
+                <div class="podcast-thumbnail"></div>
+                <p>XXXXXXXXXX</p>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 TuEmpresa. All rights reserved.</p>
+    </footer>
+    <!-- Add a placeholder for the Twitch embed -->
+    <div id="twitch-embed"></div>
+
+    <!-- Load the Twitch embed script -->
+    <script src="https://player.twitch.tv/js/embed/v1.js"></script>
+
+    <!-- Create a Twitch.Player object. This will render within the placeholder div -->
+    <script type="text/javascript">
+    new Twitch.Player("twitch-embed", {
+        channel: "zilverk"
+    });
+    </script>
+</body>
+</html>
+
